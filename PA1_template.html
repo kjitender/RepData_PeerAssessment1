@@ -264,7 +264,7 @@ paste(&quot;Interval with max number of steps =&quot;,round(maxSteps))
 
 <p>Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.</p>
 
-<h4>1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)</h4>
+<h5>6.1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)</h5>
 
 <pre><code class="r">Total_missing &lt;- sum(is.na(data))
 paste(&quot;Counting of missing values in this database =&quot;,Total_missing)
@@ -273,7 +273,7 @@ paste(&quot;Counting of missing values in this database =&quot;,Total_missing)
 <pre><code>## [1] &quot;Counting of missing values in this database = 2304&quot;
 </code></pre>
 
-<h4>2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</h4>
+<h5>6.2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</h5>
 
 <p>I will use mean of that 5-minute interval.</p>
 
@@ -283,12 +283,12 @@ for (i in 1:nrow(data_new)){
         data_new$steps[i] &lt;- mean(data_new$steps[data_new$interval == data_new$interval[i]], na.rm=TRUE)    }   }
 </code></pre>
 
-<h4>3. Create a new dataset that is equal to the original dataset but with the missing data filled in.</h4>
+<h5>6.3. Create a new dataset that is equal to the original dataset but with the missing data filled in.</h5>
 
 <pre><code class="r">for (i in 1:nrow(data_new)){ data$steps_avg[i]=data_new$steps[i]}
 </code></pre>
 
-<h4>4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day.</h4>
+<h5>6.4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day.</h5>
 
 <pre><code class="r">steps_Day1 &lt;- aggregate(data_new$steps, by=list(date=data_new$date), sum)
 names(steps_Day1) &lt;- c(&quot;Date&quot;, &quot;Total&quot;)
@@ -321,7 +321,7 @@ paste(&quot;median =&quot;,round(medianSteps_Day1, digits=2))
 <pre><code>## [1] &quot;median = 10766.19&quot;
 </code></pre>
 
-<h4>5. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</h4>
+<h5>6.5. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</h5>
 
 <p>These values do not 
 differ from original values. 
